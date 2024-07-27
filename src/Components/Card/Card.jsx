@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Button from '../Button/Button';
 import './Card.css';
 
 function Card(food) {
@@ -6,6 +7,13 @@ function Card(food) {
   const [count, setCount] = useState(0);
 
   const { title, Image, price, id } = food;
+
+  const handleIncrement = ()=>{
+    setCount(count+1)
+  }
+  const handleDecrement = ()=>{
+    setCount(count - 1)
+  }
   
   return (
     <div className='card'>
@@ -17,7 +25,13 @@ function Card(food) {
         {title} . <span className='card__price'>{price}</span>
       </h4>
 
-      
+        <div className='btn-container'>
+          <Button title={'+'} type={"add"} onclick={handleIncrement} />
+          {count!==0 ?(
+              <Button title={'-'} type={'remove'} onclick={handleDecrement}/>
+          ): ("")}
+        </div>
+
     </div>
   )
 }
